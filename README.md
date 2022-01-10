@@ -1,4 +1,4 @@
-# Sitecore.Net.MAUI SDK Multi-platform App UI (.NET MAUI)
+# Sitecore.Net.MAUI SDK
 
 This repository under construction.
 
