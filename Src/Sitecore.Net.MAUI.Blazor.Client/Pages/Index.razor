@@ -1,7 +1,37 @@
 ﻿@page "/"
 
+
 <h1>Hello, world!</h1>
 
 Welcome to your new app , Sitecore with .NET MAUI.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<h5>Example 4: Rendering a Component From a JSON</h5>
+
+@if (type != null)
+{
+    <DynamicComponent Type="type" Parameters="parameters" />
+}
+else
+{
+    
+}
+
+
+@code {
+
+    private Type type;
+    private IDictionary<string, object> parameters = new Dictionary<string, object>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        string namespaceComponents = "Sitecore.Net.MAUI.Blazor.Client.Shared.Components.SitecoreComponent.";
+        Sitecore.MAUI.Service.Model.DynamicComponentModel dynamicComponentModel = await (new Sitecore.MAUI.Service.Service.ServiceContext()).GetComponentJson();
+        type = Type.GetType($"{namespaceComponents}{dynamicComponentModel.Component}");;
+        parameters = dynamicComponentModel.parameters;
+    }
+
+
+
+}
+
+

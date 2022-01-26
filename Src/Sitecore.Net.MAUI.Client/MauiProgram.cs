@@ -1,4 +1,5 @@
-﻿namespace Sitecore.Net.MAUI.Client;
+﻿
+namespace Sitecore.Net.MAUI.Client;
 
 public static class MauiProgram
 {

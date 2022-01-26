@@ -1,5 +1,7 @@
-﻿@using Sitecore.MAUI.Service.Service
+﻿@using Sitecore.MAUI.Service.Model
+@using Sitecore.MAUI.Service.Service
 @page "/counter"
+
 
 <h1>Counter</h1>
 
@@ -7,13 +9,21 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<sc-placeholder name="myproject-main"></sc-placeholder>
+
 @code {
 	private int currentCount = 0;
 
-	private object r = ServiceContext.GetSitecoreContext();
+	//private object r = ServiceContext.GetSitecoreContext();
 
 	private void IncrementCount()
 	{
 		currentCount++;
 	}
 }
+
+
+
+
+
+
