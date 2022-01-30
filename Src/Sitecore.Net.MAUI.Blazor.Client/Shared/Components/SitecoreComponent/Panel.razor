@@ -1,0 +1,12 @@
+﻿    <span class="text-nowrap">
+        <strong>@Title</strong>
+        <p>@SubTitle</p>
+    </span>
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public string SubTitle { get; set; }
+}

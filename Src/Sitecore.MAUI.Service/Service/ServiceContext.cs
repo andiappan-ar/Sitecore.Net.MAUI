@@ -39,56 +39,48 @@ namespace Sitecore.MAUI.Service.Service
             return result;
         }
 
-        public async Task<DynamicComponentModel> GetComponentJson()
+        public async Task<DynamicComponentRoot> GetComponentJson()
         {
-            JSONComponent resultJson = new JSONComponent();
 
-            string namespaceComponents = "Sitecore.Net.MAUI.Blazor.Client.Shared.Components.SitecoreComponent.";
-
-            DynamicComponentModel dynamicComponentModel = new DynamicComponentModel()
-            {
-                parameters = new Dictionary<string, object>()
-                
-            };
+            DynamicComponentRoot result = null;
+            JsonRoot resultJson = null;
 
             try
             {
                 HttpClient client = new HttpClient();
+                
 
-                //HttpResponseMessage messge = client.GetAsync(@"C:\ARC\jss\MAUI\GIT-Sitecore.Net.MAUI\Src\Sitecore.Net.MAUI.Blazor.Client\wwwroot\data.json").Result;
                 string description = string.Empty;
                 if (true)
                 {
                     string resultResponse = await File.ReadAllTextAsync(@"C:\ARC\jss\MAUI\GIT-Sitecore.Net.MAUI\Src\Sitecore.Net.MAUI.Blazor.Client\wwwroot\data.json");
-                    resultJson = JsonConvert.DeserializeObject<JSONComponent>(resultResponse);
+                    resultJson = JsonConvert.DeserializeObject<JsonRoot>(resultResponse);
                 }
 
-                if (resultJson.Parameters != null)
+                if (resultJson != null && resultJson.componenets != null)
                 {
-                    foreach (var parameter in resultJson.Parameters)
+                    result = new DynamicComponentRoot(){componenets = new List<DynamicComponentModel>()};
+
+                    foreach (var _component in resultJson.componenets)
                     {
-                        //var jsonElement = (JsonElement)parameter.Value;
+                        DynamicComponentModel _dynamicComponentModel = new DynamicComponentModel() {
+                            ComponentType = _component.component
+                        };
 
-                        switch (parameter.Key)
-                        {
-                            case "title":
-                                dynamicComponentModel.parameters.Add(parameter.Key, parameter.Value);
-                                break;
-                            default:
-                                break;
-                        }
+                        _dynamicComponentModel.Parameters = _component.Parameters;
 
+                        result.componenets.Add(_dynamicComponentModel);
                     }
                 }
 
-                dynamicComponentModel.Component = resultJson.Component;
+                
             }
             catch (Exception ex)
             {
-                resultJson = null;
+                result = null;
             }
 
-            return dynamicComponentModel;
+            return result;
         }
     }
 }

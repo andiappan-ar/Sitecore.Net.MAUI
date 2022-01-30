@@ -1,6 +1,18 @@
 ﻿{
-  "component": "SurveyPrompt1",
-  "parameters": {
-    "title": "JSON Title"
-  }
+  "componenets": [
+    {
+      "component": "Sitecore.Net.MAUI.Blazor.Client.Shared.Components.SitecoreComponent.SurveyPrompt1",
+      "parameters": {
+        "title": "JSON Title"
+      }
+    },
+    {
+      "component": "Sitecore.Net.MAUI.Blazor.Client.Shared.Components.SitecoreComponent.Panel",
+      "parameters": {
+        "title": "Panel Title",
+        "subtitle": "Panel Sub Title"
+      }
+    }
+  ]
+
 }
