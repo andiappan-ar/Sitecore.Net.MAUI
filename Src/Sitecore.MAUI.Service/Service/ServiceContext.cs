@@ -1,11 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Sitecore.MAUI.Service.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Sitecore.MAUI.Service.Service
 {
@@ -22,14 +16,32 @@ namespace Sitecore.MAUI.Service.Service
             try
             {
                 HttpClient client = new HttpClient();
-                
+
                 HttpResponseMessage messge = client.GetAsync(url).Result;
                 string description = string.Empty;
                 if (messge.IsSuccessStatusCode)
                 {
                     string resultResponse = messge.Content.ReadAsStringAsync().Result;
                     result = JsonConvert.DeserializeObject<SitecoreContext>(resultResponse);
+
+                    foreach (var _placeholders in result.sitecore.route.placeholders)
+                    {
+                        
+                        foreach (var _placeholdersList in _placeholders.Value)
+                        {
+                            _placeholdersList.componentType = Type.GetType("Sitecore.MAUI.Client.Shared." + _placeholdersList.componentName);
+
+                            //foreach (var _placeholdersListField in _placeholdersList.fields)
+                            //{
+                            //    _placeholdersList.Parameters.Add(_placeholdersListField.Key, _placeholdersListField.Value.ToString());
+                            //}
+                               
+                        }
+                    }
+
                 }
+
+            
             }
             catch(Exception ex)
             {
@@ -39,48 +51,61 @@ namespace Sitecore.MAUI.Service.Service
             return result;
         }
 
-        public async Task<DynamicComponentRoot> GetComponentJson()
+public async Task<DynamicComponentRoot> GetComponentJson()
+{
+
+    DynamicComponentRoot result = null;
+    JsonRoot resultJson = null;
+
+    try
+    {
+        HttpClient client = new HttpClient();
+
+
+        string description = string.Empty;
+        var sitecoreLayoutContext = GetSitecoreContext();
+
+        if (sitecoreLayoutContext != null)
         {
+            string resultResponse = await File.ReadAllTextAsync(@"C:\ARC\jss\MAUI\GIT-Sitecore.Net.MAUI\Src\Sitecore.Net.MAUI.Blazor.Client\wwwroot\data.json");
+            resultJson = JsonConvert.DeserializeObject<JsonRoot>(resultResponse);
 
-            DynamicComponentRoot result = null;
-            JsonRoot resultJson = null;
-
-            try
+            foreach (var _placeholders in sitecoreLayoutContext.sitecore.route.placeholders)
             {
-                HttpClient client = new HttpClient();
-                
-
-                string description = string.Empty;
-                if (true)
+                foreach (var _placeholdersList in _placeholders.Value)
                 {
-                    string resultResponse = await File.ReadAllTextAsync(@"C:\ARC\jss\MAUI\GIT-Sitecore.Net.MAUI\Src\Sitecore.Net.MAUI.Blazor.Client\wwwroot\data.json");
-                    resultJson = JsonConvert.DeserializeObject<JsonRoot>(resultResponse);
+
                 }
 
-                if (resultJson != null && resultJson.componenets != null)
-                {
-                    result = new DynamicComponentRoot(){componenets = new List<DynamicComponentModel>()};
+            }
 
-                    foreach (var _component in resultJson.componenets)
+            if (resultJson != null && resultJson.componenets != null)
+            {
+                result = new DynamicComponentRoot() { componenets = new List<DynamicComponentModel>() };
+
+                foreach (var _component in resultJson.componenets)
+                {
+                    DynamicComponentModel _dynamicComponentModel = new DynamicComponentModel()
                     {
-                        DynamicComponentModel _dynamicComponentModel = new DynamicComponentModel() {
-                            ComponentType = _component.component
-                        };
+                        ComponentType = _component.component
+                    };
 
-                        _dynamicComponentModel.Parameters = _component.Parameters;
+                    _dynamicComponentModel.Parameters = _component.Parameters;
 
-                        result.componenets.Add(_dynamicComponentModel);
-                    }
+                    result.componenets.Add(_dynamicComponentModel);
                 }
-
-                
             }
-            catch (Exception ex)
-            {
-                result = null;
-            }
-
-            return result;
         }
+
+
+
+    }
+    catch (Exception ex)
+    {
+        result = null;
+    }
+
+    return result;
+}
     }
 }

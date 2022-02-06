@@ -3,9 +3,16 @@
 namespace Sitecore.MAUI.Service.Model
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-    public class Site
+
+    public class Sitecore
     {
-        public string name { get; set; }
+        public Context context { get; set; }
+        public Route route { get; set; }
+    }
+
+    public class SitecoreContext
+    {
+        public Sitecore sitecore { get; set; }
     }
 
     public class Context
@@ -18,61 +25,17 @@ namespace Sitecore.MAUI.Service.Model
         public string itemPath { get; set; }
     }
 
-    public class PageTitle
+    public class Site
     {
-        public string value { get; set; }
+        public string name { get; set; }
     }
 
-    public class Fields
-    {
-        public PageTitle pageTitle { get; set; }
-        public Heading heading { get; set; }
-        public Content content { get; set; }
-        public Title Title { get; set; }
-    }
-
-    public class Params
-    {
-    }
-
-    public class Heading
-    {
-        public string value { get; set; }
-    }
-
-    public class Content
-    {
-        public string value { get; set; }
-    }
-
-    public class Title
-    {
-        public string value { get; set; }
-    }
-
-    public class MyprojectMain
-    {
-        public string uid { get; set; }
-        public string componentName { get; set; }
-        public string dataSource { get; set; }
-        public Params @params { get; set; }
-        public Fields fields { get; set; }
-    }
-
-    public class Placeholders
-    {
-        [JsonProperty("jss-main1")]
-        public List<object> JssMain1 { get; set; }
-
-        [JsonProperty("myproject-main")]
-        public List<MyprojectMain> MyprojectMain { get; set; }
-    }
 
     public class Route
     {
         public string name { get; set; }
         public string displayName { get; set; }
-        public Fields fields { get; set; }
+        public Dictionary<string, object> fields { get; set; }
         public string databaseName { get; set; }
         public string deviceId { get; set; }
         public string itemId { get; set; }
@@ -81,19 +44,27 @@ namespace Sitecore.MAUI.Service.Model
         public string layoutId { get; set; }
         public string templateId { get; set; }
         public string templateName { get; set; }
-        public Placeholders placeholders { get; set; }
+
+        public IDictionary<string,List<JsonRendering>> placeholders { get; set; }
     }
 
-    public class Sitecore
+    public class JsonRendering
     {
-        public Context context { get; set; }
-        public Route route { get; set; }
+        public string uid { get; set; }
+        public string componentName { get; set; }
+       
+        public string dataSource { get; set; }
+        public IDictionary<string, object> @params { get; set; }
+        public IDictionary<string, object> fields { get; set; }
+        public Type componentType { get; set; }
+        
     }
 
-    public class SitecoreContext
-    {
-        public Sitecore sitecore { get; set; }
-    }
+ 
+
+
+
+
 
 
 }
