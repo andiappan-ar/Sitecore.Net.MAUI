@@ -8,7 +8,7 @@
             SitecoreHeadlessServiceApiKey = "%7B20CC82CD-F3EA-4905-85AA-44CDEE3B5F0A%7D";
             CurrentContextUrlPath = "/";
             SitecoreHeadlessServiceUrl = "http://a-custom-route.com/sitecore/api/layout/render/jss?item=" + CurrentContextUrlPath + "&sc_lang=en&sc_apikey=" + SitecoreHeadlessServiceApiKey;
-            ClientComponentNamespace = "Sitecore.MAUI.Blazor.Sample.Components.Shared.";
+            ClientComponentNamespace = "Sitecore.MAUI.Blazor.Sample.Components.Shared.{0}, Sitecore.MAUI.Blazor.Sample.Components";
             Key_DynamicComponentModel = "DynamicComponentModel";
         }
         public static bool IsExperienceEditor { get; set; }

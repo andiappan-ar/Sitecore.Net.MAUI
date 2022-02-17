@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sitecore.MAUI.Service", "Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sitecore.MAUI.Client", "Sitecore.MAUI.Client\Sitecore.MAUI.Client.csproj", "{6987BEAF-B1CF-49F7-9C45-2A4038426B36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.MAUI.Blazor.Sample.Components", "Sitecore.MAUI.Blazor.Sample.Components\Sitecore.MAUI.Blazor.Sample.Components.csproj", "{3E05329F-38D6-4808-9D98-DC5B35E9E316}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sitecore.MAUI.Blazor.Sample.Components", "Sitecore.MAUI.Blazor.Sample.Components\Sitecore.MAUI.Blazor.Sample.Components.csproj", "{3E05329F-38D6-4808-9D98-DC5B35E9E316}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{D44166FD-DB4E-4451-B106-A59CF52A89A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.MAUI.Blazor.Sample.APP", "Sitecore.MAUI.Blazor.Sample.APP\Sitecore.MAUI.Blazor.Sample.APP.csproj", "{3B318FD3-7BDC-4AB2-B473-2FCE391D3D57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,9 +35,19 @@ Global
 		{3E05329F-38D6-4808-9D98-DC5B35E9E316}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E05329F-38D6-4808-9D98-DC5B35E9E316}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E05329F-38D6-4808-9D98-DC5B35E9E316}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3B318FD3-7BDC-4AB2-B473-2FCE391D3D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B318FD3-7BDC-4AB2-B473-2FCE391D3D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B318FD3-7BDC-4AB2-B473-2FCE391D3D57}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3B318FD3-7BDC-4AB2-B473-2FCE391D3D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B318FD3-7BDC-4AB2-B473-2FCE391D3D57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B318FD3-7BDC-4AB2-B473-2FCE391D3D57}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E05329F-38D6-4808-9D98-DC5B35E9E316} = {D44166FD-DB4E-4451-B106-A59CF52A89A9}
+		{3B318FD3-7BDC-4AB2-B473-2FCE391D3D57} = {D44166FD-DB4E-4451-B106-A59CF52A89A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
