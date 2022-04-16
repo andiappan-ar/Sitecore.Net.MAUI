@@ -1,0 +1,48 @@
+﻿@page "/"
+
+@using Sitecore.MAUI.RenderingEngine.Model
+@using Sitecore.MAUI.RenderingEngine.Service
+@using Microsoft.Maui.Controls
+
+
+@if (sitecoreContext != null && sitecoreContext.sitecore.route.placeholders != null)
+{
+    foreach (var _placeholders in sitecoreContext.sitecore.route.placeholders)
+    {
+        foreach (var _placeholdersList in _placeholders.Value)
+        {
+            @if (_placeholdersList != null && _placeholdersList.fields != null)
+            {
+                <!--Asynchronously load component-->
+                <DynamicComponent Type="@Type.GetType(String.Format(ServiceSettings.ClientComponentNamespace , _placeholdersList.componentName))"
+                  Parameters="@ServiceContext.GetDynamicComponentModel(_placeholdersList.fields)" />
+            }
+            else
+            {
+                <h2>dynamicComponent or dynamicComponent.Parameters is null</h2>
+            }
+        }
+
+    }
+}
+else
+{
+    <h2>dynamicComponentRoot or dynamicComponentRoot.componenets is null</h2>
+}
+
+ 
+
+
+@code {
+
+    private SitecoreContext sitecoreContext;
+
+    protected override async Task OnInitializedAsync()
+    {
+        sitecoreContext = await ServiceContext.GetSitecoreContext();
+    }
+
+
+}
+
+

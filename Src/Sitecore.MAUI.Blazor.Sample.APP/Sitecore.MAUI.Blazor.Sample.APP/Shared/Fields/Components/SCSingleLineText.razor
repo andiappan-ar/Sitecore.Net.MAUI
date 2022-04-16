@@ -1,0 +1,12 @@
+﻿@using Sitecore.MAUI.RenderingEngine.Service
+
+@if (!ServiceSettings.IsExperienceEditor)
+{
+    @scmodel.value
+}
+else
+{
+    <input type="text" value="@scmodel.value"/>
+}
+
+
