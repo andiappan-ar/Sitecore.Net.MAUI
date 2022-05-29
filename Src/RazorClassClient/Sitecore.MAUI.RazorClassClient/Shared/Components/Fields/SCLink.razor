@@ -1,0 +1,14 @@
+﻿@using Sitecore.MAUI.RenderingEngine.Service
+
+@if (!ServiceSettings.AppSettings.EnableExperienceEditor)
+{
+    @scmodel?.value
+}
+else
+{
+   <a href="@scmodel?.value.href" class="@classAttr">
+
+   </a>
+}
+
+
