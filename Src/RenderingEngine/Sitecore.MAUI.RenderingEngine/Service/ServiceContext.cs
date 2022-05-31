@@ -1,17 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Sitecore.MAUI.RenderingEngine.Model;
+using Sitecore.MAUI.RenderingEngine.Model.SCFields;
 
 namespace Sitecore.MAUI.RenderingEngine.Service
 {
     public static class ServiceContext
     {
-        public static string ContextUrlPath = "/";
-
-        public static void SetContextUrlPath(string path)
-        {
-            ContextUrlPath = path;
-        }
-
+        ////TODO:Override
         /// <summary>
         /// GetSitecoreContext : Consume sitecore headless service and return sitecore context
         /// </summary>
@@ -37,55 +32,7 @@ namespace Sitecore.MAUI.RenderingEngine.Service
             }
             catch (Exception ex)
             {
-                throw ex;
-            }
-
-            return result;
-        }
-
-        public static async Task<DynamicComponentRoot> GetComponentJson()
-        {
-
-            DynamicComponentRoot result = null;
-            JsonRoot resultJson = null;
-
-            try
-            {
-                HttpClient client = new HttpClient();
-
-
-                string description = string.Empty;
-                var sitecoreLayoutContext = GetSitecoreContext();
-
-                if (sitecoreLayoutContext != null)
-                {
-                    string resultResponse = await File.ReadAllTextAsync(@"C:\ARC\jss\MAUI\GIT-Sitecore.Net.MAUI\Src\Sitecore.Net.MAUI.Blazor.Client\wwwroot\data.json");
-                    resultJson = JsonConvert.DeserializeObject<JsonRoot>(resultResponse);                   
-
-                    if (resultJson != null && resultJson.componenets != null)
-                    {
-                        result = new DynamicComponentRoot() { componenets = new List<DynamicComponentModel>() };
-
-                        foreach (var _component in resultJson.componenets)
-                        {
-                            DynamicComponentModel _dynamicComponentModel = new DynamicComponentModel()
-                            {
-                                ComponentType = _component.component
-                            };
-
-                            _dynamicComponentModel.Parameters = _component.Parameters;
-
-                            result.componenets.Add(_dynamicComponentModel);
-                        }
-                    }
-                }
-
-
-
-            }
-            catch (Exception ex)
-            {
-                result = null;
+                throw;
             }
 
             return result;
@@ -95,6 +42,41 @@ namespace Sitecore.MAUI.RenderingEngine.Service
         {
             var result = new Dictionary<string, object>() { { ServiceSettings.AppSettings.Key_DynamicComponentModel, fields } };
             return result;
+        }
+
+        public static List<JsonRendering> GetComponent(SitecoreContext sitecoreContext, string placeholderKey, string componentName)
+        {
+            List<JsonRendering> results = null;
+
+            try
+            {
+                if(!string.IsNullOrEmpty(placeholderKey) && !string.IsNullOrEmpty(componentName))
+                {
+                    
+                    var dynamicComponent = sitecoreContext.sitecore.route.placeholders.Where(x => x.Key == placeholderKey)?.FirstOrDefault()
+                        .Value?.Where(x=>x.componentName == componentName);
+                    if (dynamicComponent != null)
+                    {
+                        results = new List<JsonRendering>();
+                        foreach (var item in dynamicComponent)
+                        {
+                            results.Add(item);
+                        }
+                    }
+                    
+                    
+                }
+                
+                
+                
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+
+            return results;
+
         }
     }
 }
