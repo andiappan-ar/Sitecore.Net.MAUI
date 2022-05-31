@@ -7,45 +7,47 @@
 @if (Model != null)
 {
     <!-- Navigation-->
-     <SCSingleLineText scmodel="@Model.DisplayName"></SCSingleLineText>
-   @* <SCLink class="navbar-brand" scmodel="@Model.Link">
-       
-    </SCLink>*@
+    
+
+    <SCLink scmodel="@Model.Link" customText="@Model.DisplayName.value">       
+        
+    </SCLink>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
+     <ul class="navbar-nav">
             @foreach (var nav in Model.Elements)
             {
                 <li class="nav-item">
                     @if (nav.fields.Elements.Any())
                     {
-                    @*<li class="nav-item dropdown">
-                        <SCLink class="nav-link  dropdown-toggle" role="button" data-bs-toggle="dropdown" scmodel="@nav.fields.Link">
-                            <SCSingleLineText scmodel="@nav.fields.DisplayName"></SCSingleLineText>
+                    <li class="nav-item dropdown">
+                        <SCLink  scmodel="@nav.fields.Link" customText="@nav.displayName">
+                           
                         </SCLink>
                         <ul class="dropdown-menu">
                                 @foreach (var innerNav in nav.fields.Elements)
                                 {
-                                <SCLink class="dropdown-item" scmodel="@innerNav.fields.Link">
-                                    <SCSingleLineText scmodel="@innerNav.fields.DisplayName"></SCSingleLineText>
+                                <SCLink  scmodel="@innerNav.fields.Link" customText="@innerNav.displayName">
+                                    
                                 </SCLink>
                                 }
                         </ul>
-                    </li>*@
+                    </li>
                     }
                     else
                     {
-                  @*  <SCLink class="nav-link" scmodel="@nav.fields.Link">
-                        <SCSingleLineText scmodel="@nav.fields.DisplayName"></SCSingleLineText>
-                    </SCLink>*@
+                    <SCLink  scmodel="@nav.fields.Link" customText="@nav.displayName">
+                       
+                    </SCLink>
                     }
                 </li>
             }
         </ul>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+       
     </div>
 }
 

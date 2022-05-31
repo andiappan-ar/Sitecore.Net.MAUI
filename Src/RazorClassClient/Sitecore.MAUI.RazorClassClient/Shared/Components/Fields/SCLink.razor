@@ -2,13 +2,15 @@
 
 @if (!ServiceSettings.AppSettings.EnableExperienceEditor)
 {
-    @scmodel?.value
+    string href = string.Concat("/Index", scmodel?.value.href);
+    <a href='@href' class="@scmodel?.value?.cls" >
+        @scmodel?.value.text
+        @customText
+   </a>
 }
 else
 {
-   <a href="@scmodel?.value.href" class="@classAttr">
-
-   </a>
+   
 }
 
 
