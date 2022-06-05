@@ -2,11 +2,11 @@
 
 @if (!ServiceSettings.AppSettings.EnableExperienceEditor)
 {
-    <input type="checkbox" checked="@scmodel.value"/>
+    @scmodel.value
 }
 else
 {
-    <input type="checkbox" checked="@scmodel.value"/>
+    <input type="text" value="@scmodel.value" />
 }
 
 

@@ -1,0 +1,16 @@
+﻿@using Sitecore.MAUI.RenderingEngine.Service
+
+@if (!ServiceSettings.AppSettings.EnableExperienceEditor)
+{
+
+   <img alt="@scmodel?.value?.alt"  
+   src="@scmodel?.value?.src" 
+   style="height:@scmodel?.value?.height;width:@scmodel?.value?.width;"/>
+   
+}
+else
+{
+   
+}
+
+

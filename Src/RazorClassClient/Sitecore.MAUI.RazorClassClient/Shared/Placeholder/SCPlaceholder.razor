@@ -7,28 +7,28 @@
     {
         foreach (var _placeholdersList in _placeholders.Value)
         {
-    @if (_placeholdersList != null && _placeholdersList.fields != null)
+            @if (_placeholdersList != null && _placeholdersList.fields != null)
             {
                 var typeComponent = Type.GetType(String.Format(ServiceSettings.AppSettings.ClientComponentNamespace, _placeholdersList.componentName));
                 if (typeComponent != null)
                 {
-    <!--Asynchronously load component-->
-    <DynamicComponent Type="@typeComponent" Parameters="@ServiceContext.GetDynamicComponentModel(_placeholdersList.fields)" />
+                    <!--Asynchronously load component-->
+                    <DynamicComponent Type="@typeComponent" Parameters="@ServiceContext.GetDynamicComponentModel(_placeholdersList.fields)" />
                 }
                 else
                 {
-    <h3>Component "@_placeholdersList.componentName" not found. </h3>
+                    <h3>Component "@_placeholdersList.componentName" not found. </h3>
                 }
 
             }
             else
             {
-    <h2>dynamicComponent or dynamicComponent.Parameters is null</h2>
+                <h2>dynamicComponent or dynamicComponent.Parameters is null</h2>
             }
         }
     }
     else
     {
-    <h2>Placeholder "@placeholderKey" not found!</h2>
+        <h2>Placeholder "@placeholderKey" not found!</h2>
     }
 }

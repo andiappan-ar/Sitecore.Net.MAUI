@@ -2,11 +2,23 @@
 
 @if (!ServiceSettings.AppSettings.EnableExperienceEditor)
 {
-    string href = string.Concat("/Index", scmodel?.value.href);
-    <a href='@href' class="@scmodel?.value?.cls" >
+    bool isInternal = false;
+    var model = scmodel?.value;
+
+    if(model!=null)
+    {
+        isInternal = scmodel.value.linktype.Equals("internal");
+    }
+
+    string href = 
+    (isInternal)?
+    string.Concat("/Index", scmodel?.value.href,scmodel?.value?.querystring):
+    string.Concat(scmodel?.value.href,scmodel?.value?.querystring);
+
+   <a href='@href' class="@scmodel?.value?.cls" alt="@scmodel?.value?.title"  >
         @scmodel?.value.text
         @customText
-   </a>
+   </a>   
 }
 else
 {
