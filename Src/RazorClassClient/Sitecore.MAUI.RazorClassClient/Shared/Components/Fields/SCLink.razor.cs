@@ -8,7 +8,10 @@ namespace Sitecore.MAUI.RazorClassClient.Shared.Components.Fields
         public Sitecore.MAUI.RenderingEngine.Model.SCFields.SCLink? scmodel { get; set; }
 
         [Parameter]
-        public string customText { get; set; }
+        public string? customDescription { get; set; }
+
+        [Parameter]
+        public string? customClass { get; set; }
 
     }
 

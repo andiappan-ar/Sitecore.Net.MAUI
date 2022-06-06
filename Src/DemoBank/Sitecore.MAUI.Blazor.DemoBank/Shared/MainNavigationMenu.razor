@@ -1,54 +1,67 @@
 ﻿@using Sitecore.MAUI.RenderingEngine.Service
 @using Sitecore.MAUI.RazorClassClient.Shared.Components.Fields;
-@{
-    var r = "";
-}
 
 @if (Model != null)
 {
     <!-- Navigation-->
-    
 
-    <SCLink scmodel="@Model.Link" customText="@Model.DisplayName.value">       
-        
-    </SCLink>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
+        <div class="container-fluid">
+            <SCLink scmodel="@Model.Link" customClass="navbar-brand" customDescription="@Model.DisplayName.value" />
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-     <ul class="navbar-nav">
-            @foreach (var nav in Model.Elements)
-            {
-                <li class="nav-item">
-                    @if (nav.fields.Elements.Any())
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    @foreach (var nav in Model.Elements)
                     {
-                    <li class="nav-item dropdown">
-                        <SCLink  scmodel="@nav.fields.Link" customText="@nav.displayName">
-                           
-                        </SCLink>
-                        <ul class="dropdown-menu">
-                                @foreach (var innerNav in nav.fields.Elements)
-                                {
-                                <SCLink  scmodel="@innerNav.fields.Link" customText="@innerNav.displayName">
-                                    
-                                </SCLink>
-                                }
-                        </ul>
+
+                        @if (nav.fields.Elements.Any())
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link  dropdown-toggle" href="#">Link</a>
+                                @*<SCLink scmodel="@nav.fields.Link" customClass="nav-link dropdown-toggle" customDescription="@nav.displayName" />*@
+                                <ul class="dropdown-menu">
+                                    @foreach (var innerNav in nav.fields.Elements)
+                                    {
+                                        <li>
+                                            <SCLink scmodel="@innerNav.fields.Link" customClass="dropdown-item" customDescription="@innerNav.displayName" />
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <SCLink scmodel="@nav.fields.Link" customClass="nav-link" customDescription="@nav.displayName" />
+                            </li>
+                        }
+                    }
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="/index/AboutSitecoreMAUI" @onclick='(()=>HandleClick("/index/AboutSitecoreMAUI"))'>
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> About Sitecore MAUI
+                        </NavLink>
                     </li>
-                    }
-                    else
-                    {
-                    <SCLink  scmodel="@nav.fields.Link" customText="@nav.displayName">
-                       
-                    </SCLink>
-                    }
-                </li>
-            }
-        </ul>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-       
-    </div>
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="fetchdata">
+                            <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                        </NavLink>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 }
 
+@code {
+
+    @inject NavigationManager NavigationManager;
+
+    private void HandleClick(string contextURL)
+    {
+        NavigationManager.NavigateTo(contextURL, true);
+    }
+}
 
