@@ -50,7 +50,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Shared\MainNavigationMenu - Copy.razor.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Content Remove="appsettings.json" />
+	  <Content Remove="Shared\MainNavigationMenu - Copy.razor" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -60,6 +65,10 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\RazorClassClient\Sitecore.MAUI.RazorClassClient\Sitecore.MAUI.RazorClassClient.csproj" />
 	  <ProjectReference Include="..\..\RenderingEngine\Sitecore.MAUI.RenderingEngine\Sitecore.MAUI.RenderingEngine.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\js\" />
 	</ItemGroup>
 
 </Project>

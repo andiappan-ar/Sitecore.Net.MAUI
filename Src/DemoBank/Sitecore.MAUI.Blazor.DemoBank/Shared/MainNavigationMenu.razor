@@ -4,41 +4,55 @@
 @if (Model != null)
 {
     <!-- Navigation-->
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <div class="container">
+            <!--Brand Sitecore Navigations-->
+            <NavLink class="navbar-brand"
+                 @onclick="() => expandSubNavSettings = !expandSubNavSettings"
+                 id="navbarDropdown">
+                <img src="/sm-icon-png.png" width="30" height="30" alt="">
+                @Model.DisplayName.value
+            </NavLink>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
-        <div class="container-fluid">
-            <SCLink scmodel="@Model.Link" customClass="navbar-brand" customDescription="@Model.DisplayName.value" />
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+            <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+                <!--Sitecore Navigations-->
+                <ul class="navbar-nav mr-auto">
                     @foreach (var nav in Model.Elements)
                     {
-
                         @if (nav.fields.Elements.Any())
                         {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link  dropdown-toggle" href="#">Link</a>
-                                @*<SCLink scmodel="@nav.fields.Link" customClass="nav-link dropdown-toggle" customDescription="@nav.displayName" />*@
-                                <ul class="dropdown-menu">
-                                    @foreach (var innerNav in nav.fields.Elements)
-                                    {
-                                        <li>
-                                            <SCLink scmodel="@innerNav.fields.Link" customClass="dropdown-item" customDescription="@innerNav.displayName" />
-                                        </li>
-                                    }
-                                </ul>
+                            <li class="nav-item dropdown show">
+                                <NavLink class="nav-link dropdown-toggle"
+                             @onclick="() => expandSubNavSettings = !expandSubNavSettings"
+                             id="navbarDropdown">
+                                    @nav.displayName
+                                </NavLink>
+
+                                @if (expandSubNavSettings)
+                                {
+                                <li class="dropdown-menu show" aria-labelledby="navbarDropdown" @onclick="() => expandSubNavSettings = !expandSubNavSettings">
+                                        @foreach (var innerNav in nav.fields.Elements)
+                                        {
+                                    <li class="nav-item">
+                                        <SCLink scmodel="@innerNav.fields.Link" customClass="nav-link text-dark" customDescription="@innerNav.displayName" />
+                                    </li>
+                                        }
+                                </li>
+                                }
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <SCLink scmodel="@nav.fields.Link" customClass="nav-link" customDescription="@nav.displayName" />
+                                <SCLink scmodel="@nav.fields.Link" customClass="nav-link text-dark" customDescription="@nav.displayName" />
                             </li>
                         }
                     }
+
+                    <!--Static Navigations-->
                     <li class="nav-item">
                         <NavLink class="nav-link" href="/index/AboutSitecoreMAUI" @onclick='(()=>HandleClick("/index/AboutSitecoreMAUI"))'>
                             <span class="oi oi-list-rich" aria-hidden="true"></span> About Sitecore MAUI
@@ -56,6 +70,23 @@
 }
 
 @code {
+
+    bool collapseNavMenu = true;
+
+    private bool expandSubNavSettings;
+
+
+    string baseMenuClass = "navbar-collapse d-sm-inline-flex flex-sm-row-reverse";
+
+    string NavMenuCssClass => baseMenuClass + (collapseNavMenu ? " collapse" : "");
+
+    void ToggleNavMenu()
+    {
+        if (!expandSubNavSettings)
+        {
+            collapseNavMenu = !collapseNavMenu;
+        }
+    }
 
     @inject NavigationManager NavigationManager;
 

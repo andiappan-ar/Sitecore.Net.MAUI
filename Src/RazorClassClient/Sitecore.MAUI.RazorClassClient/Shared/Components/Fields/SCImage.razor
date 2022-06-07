@@ -2,10 +2,12 @@
 
 @if (!ServiceSettings.AppSettings.EnableExperienceEditor)
 {
+    string styleCustom = (customStyle != null) ?customStyle:
+    string.Concat("height:",scmodel?.value?.height,";width:",@scmodel?.value?.width,";");
 
-   <img alt="@scmodel?.value?.alt"  
+   <img alt="@scmodel?.value?.alt"  class="@customClass"
    src="@scmodel?.value?.src" 
-   style="height:@scmodel?.value?.height;width:@scmodel?.value?.width;"/>
+   style="@styleCustom"/>
    
 }
 else
