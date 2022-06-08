@@ -1,4 +1,6 @@
-﻿namespace Sitecore.MAUI.DemoBank
+﻿using Sitecore.MAUI.DemoBank.Pages;
+
+namespace Sitecore.MAUI.DemoBank
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new IndexPage();
         }
     }
 }

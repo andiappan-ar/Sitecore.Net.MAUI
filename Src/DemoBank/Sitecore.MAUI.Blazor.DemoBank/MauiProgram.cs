@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.WebView.Maui;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Sitecore.MAUI.Blazor.DemoBank.Data;
 using Sitecore.MAUI.RenderingEngine.Service;
 using System.Reflection;
