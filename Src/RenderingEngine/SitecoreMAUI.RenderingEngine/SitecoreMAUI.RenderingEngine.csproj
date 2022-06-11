@@ -15,10 +15,32 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<PackageId>SitecoreMAUI.RenderingEngine</PackageId>
+		<Title>SitecoreMAUI.RenderingEngine</Title>
+		<Version>1.0.0.0</Version>
+		<Authors>Andiappan</Authors>
+		<Company>SitecoreMAUI</Company>
+		<Product>SitecoreMAUI.RenderingEngine</Product>
+		<Description>SitecoreMAUI RenderingEngine.</Description>
+		<PackageProjectUrl>https://sitecoremaui.wordpress.com/</PackageProjectUrl>
+		<PackageIcon>sm-icon-png.png</PackageIcon>
+		<RepositoryUrl>https://github.com/andiappan-ar/SitecoreMAUI</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Sitecore MAUI;Sitecore mobile development;Sitecore Android;SitecoreIOS;Sitecore MACOS;SItecore native apps;Sitecore MAUI SDK</PackageTags>
+		<PackageReleaseNotes>Initial version</PackageReleaseNotes>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <Folder Include="Components\Fields\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\..\..\sm-icon-png.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 	<ItemGroup>

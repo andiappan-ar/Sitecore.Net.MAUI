@@ -14,6 +14,7 @@
     <RepositoryUrl>https://github.com/andiappan-ar/SitecoreMAUI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Sitecore MAUI;Sitecore mobile development;Sitecore Android;SitecoreIOS;Sitecore MACOS;SItecore native apps;Sitecore MAUI SDK</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
