@@ -1,4 +1,4 @@
-# Sitecore.MAUI SDK (Preview release)
+# Sitecore MAUI SDK (Preview release)
 
 Get start MAUI development with "Sitecore MAUI SDK". Leverage the Sitecore headless service benefits with this SDK. Please find the documentation here(https://sitecoremaui.wordpress.com/).
 
