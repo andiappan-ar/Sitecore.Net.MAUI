@@ -1,0 +1,12 @@
+﻿namespace SitecoreMAUI.RenderingEngine.Model.SCFields
+{
+    public class SCDropLink<T>
+    {
+        public string id { get; set; }
+        public string url { get; set; }
+        public string name { get; set; }
+        public string displayName { get; set; }
+        public T fields { get; set; }
+    }
+
+}

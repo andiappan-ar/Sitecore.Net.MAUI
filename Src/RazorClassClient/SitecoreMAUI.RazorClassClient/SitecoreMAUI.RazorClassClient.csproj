@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Title>SitecoreMAUI.RazorClassClient</Title>
+    <Authors>Andiappan</Authors>
+    <Company>Andiapan</Company>
+    <Product>SitecoreMAUI</Product>
+    <Description>Sitecore MAUI SDK</Description>
+    <PackageProjectUrl>https://github.com/andiappan-ar/SitecoreMAUI</PackageProjectUrl>
+    <PackageIcon>sm-icon-png.png</PackageIcon>
+    <RepositoryUrl>https://github.com/andiappan-ar/SitecoreMAUI</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Sitecore MAUI;Sitecore mobile development;Sitecore Android;SitecoreIOS;Sitecore MACOS;SItecore native apps;Sitecore MAUI SDK</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\sm-icon-png.png" Link="sm-icon-png.png">
+      <PackagePath>\</PackagePath>
+      <Pack>True</Pack>
+    </None>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\RenderingEngine\SitecoreMAUI.RenderingEngine\SitecoreMAUI.RenderingEngine.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,39 @@
+﻿@using SitecoreMAUI.RenderingEngine.Service
+
+@if (!ServiceSettings.AppSettings.EnableExperienceEditor)
+{
+    bool isInternal = false;
+    var model = scmodel?.value;
+
+    if(model!=null)
+    {
+        isInternal = scmodel.value.linktype.Equals("internal");
+    }
+
+    string href = 
+    (isInternal)?
+    string.Concat("/Index", scmodel?.value.href,scmodel?.value?.querystring):
+    string.Concat(scmodel?.value.href,scmodel?.value?.querystring);
+
+   <a href='@href' class="@scmodel?.value?.cls @customClass" alt="@scmodel?.value?.title" 
+   @onclick='(()=>HandleClick(href))' 
+   >
+        @scmodel?.value.text
+        @customDescription
+   </a>
+}
+else
+{
+   
+}
+
+@code {
+	
+	@inject NavigationManager NavigationManager;
+	
+	private void HandleClick(string contextURL)
+	{		
+		NavigationManager.NavigateTo(contextURL,true);
+	}	
+}
+
