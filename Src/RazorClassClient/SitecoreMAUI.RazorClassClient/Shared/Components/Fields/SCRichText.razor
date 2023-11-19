@@ -1,12 +1,16 @@
 ﻿@using SitecoreMAUI.RenderingEngine.Service
 
-@if (!ServiceSettings.AppSettings.EnableExperienceEditor)
+@{
+    var scvalue = @scmodel.value;
+}
+
+@if (ServiceSettings.AppSettings.EnableExperienceEditor)
 {
-    @scmodel.value    
+    @((MarkupString)scvalue)
 }
 else
 {
-    <textarea type="text" value="@scmodel.value" />
+    @((MarkupString)scvalue)
 }
 
 

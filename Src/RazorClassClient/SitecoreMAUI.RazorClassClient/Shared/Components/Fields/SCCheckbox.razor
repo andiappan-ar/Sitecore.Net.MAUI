@@ -1,6 +1,6 @@
 ﻿@using SitecoreMAUI.RenderingEngine.Service
 
-@if (!ServiceSettings.AppSettings.EnableExperienceEditor)
+@if (ServiceSettings.AppSettings.EnableExperienceEditor)
 {
     <input type="checkbox" checked="@scmodel.value"/>
 }

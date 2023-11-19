@@ -1,12 +1,13 @@
 ﻿@using SitecoreMAUI.RenderingEngine.Service
 
-@if (!ServiceSettings.AppSettings.EnableExperienceEditor)
+@if (ServiceSettings.AppSettings.EnableExperienceEditor)
 {
-    @scmodel.value    
+    <input type="text" value="@scmodel.value" />
 }
 else
 {
-    <input type="text" value="@scmodel.value" />
+    @scmodel.value
+   
 }
 
 

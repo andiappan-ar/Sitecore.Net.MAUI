@@ -5,7 +5,7 @@ namespace SitecoreMAUI.RazorClassClient.Shared.Components.Fields
     public partial class SCRichText
     {
         [Parameter]
-        public SitecoreMAUI.RenderingEngine.Model.SCFields.SCRichText? scmodel { get; set; }     
+        public SitecoreMAUI.RenderingEngine.Model.SCFields.SCRichText? scmodel { get; set; }        
 
     }
 

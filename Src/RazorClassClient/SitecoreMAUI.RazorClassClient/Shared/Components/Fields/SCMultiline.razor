@@ -1,12 +1,22 @@
 ﻿@using SitecoreMAUI.RenderingEngine.Service
 
-@if (!ServiceSettings.AppSettings.EnableExperienceEditor)
+@if (ServiceSettings.AppSettings.EnableExperienceEditor)
 {
-    @scmodel.value
+    <input type="text" value="@scmodel.value" />   
 }
 else
 {
-    <input type="text" value="@scmodel.value" />
+    @foreach (var line in resultString.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+    {
+        <p>@line</p>
+    }
+
+    @code {
+
+    public string resultString => @scmodel.value;
+    }
+
+    
 }
 
 
